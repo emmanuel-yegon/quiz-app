@@ -1,9 +1,11 @@
-package com.emmanuel_yegon.quiz
+package com.emmanuel_yegon.quiz.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import androidx.core.content.ContextCompat
+import com.emmanuel_yegon.quiz.R
 import com.emmanuel_yegon.quiz.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +16,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val window: Window = this@MainActivity.window
-        window.statusBarColor=ContextCompat.getColor(this@MainActivity,R.color.grey)
+        window.statusBarColor=ContextCompat.getColor(this@MainActivity, R.color.grey)
+
+        binding.apply {
+            bottomMenu.setItemSelected(R.id.home)
+            bottomMenu.setOnItemSelectedListener {
+                if (it == R.id.board) {
+                    startActivity(Intent(this@MainActivity,LeaderActivity::class.java))
+                }
+            }
+        }
 
     }
 }
